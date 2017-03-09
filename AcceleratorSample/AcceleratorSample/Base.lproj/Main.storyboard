@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +26,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9YK-bA-3cT">
-                                <rect key="frame" x="67.5" y="581" width="240" height="66"/>
+                                <rect key="frame" x="38.5" y="581" width="298" height="66"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-ee-zVb" userLabel="publisherVideoButton">
                                         <rect key="frame" x="8" y="8" width="50" height="50"/>
@@ -54,7 +53,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGJ-HW-7bd" userLabel="messageButton">
-                                        <rect key="frame" x="124" y="8" width="50" height="50"/>
+                                        <rect key="frame" x="182" y="8" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="PGJ-HW-7bd" secondAttribute="height" multiplier="1:1" id="Llb-Fq-pr6"/>
@@ -66,7 +65,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tga-bC-EjI" userLabel="messageButton">
-                                        <rect key="frame" x="182" y="8" width="50" height="50"/>
+                                        <rect key="frame" x="240" y="8" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="tga-bC-EjI" secondAttribute="height" multiplier="1:1" id="Y7J-AD-kr2"/>
@@ -78,23 +77,38 @@
                                             <action selector="textMessageButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="S4r-6R-GhV"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knA-xu-8CX" userLabel="publisherCallButton">
+                                        <rect key="frame" x="124" y="8" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.41568627450000001" green="0.67843137249999996" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="R8H-LY-SIm"/>
+                                            <constraint firstAttribute="width" secondItem="knA-xu-8CX" secondAttribute="height" multiplier="1:1" id="x2u-0H-QgG"/>
+                                        </constraints>
+                                        <state key="normal" image="startCall"/>
+                                        <connections>
+                                            <action selector="publisherCallButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="HEQ-Cx-ikt"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="f7a-Tc-Xd4" firstAttribute="centerY" secondItem="9YK-bA-3cT" secondAttribute="centerY" id="1AL-FV-5XY"/>
-                                    <constraint firstItem="PGJ-HW-7bd" firstAttribute="leading" secondItem="f7a-Tc-Xd4" secondAttribute="trailing" constant="8" id="1Mu-G1-2wi"/>
                                     <constraint firstAttribute="bottom" secondItem="lwu-ee-zVb" secondAttribute="bottom" constant="8" id="8v0-yv-bCD"/>
                                     <constraint firstAttribute="bottom" secondItem="tga-bC-EjI" secondAttribute="bottom" constant="8" id="G0G-4n-aLO"/>
                                     <constraint firstAttribute="trailing" secondItem="tga-bC-EjI" secondAttribute="trailing" constant="8" id="HHw-jf-oxj"/>
                                     <constraint firstAttribute="bottom" secondItem="PGJ-HW-7bd" secondAttribute="bottom" constant="8" id="ICa-5P-ea5"/>
                                     <constraint firstItem="f7a-Tc-Xd4" firstAttribute="leading" secondItem="lwu-ee-zVb" secondAttribute="trailing" constant="8" id="LqX-jo-kIe"/>
                                     <constraint firstItem="lwu-ee-zVb" firstAttribute="leading" secondItem="9YK-bA-3cT" secondAttribute="leading" constant="8" id="Nas-uE-caR"/>
+                                    <constraint firstItem="PGJ-HW-7bd" firstAttribute="leading" secondItem="knA-xu-8CX" secondAttribute="trailing" constant="8" id="Ncf-DY-PoG"/>
                                     <constraint firstItem="lwu-ee-zVb" firstAttribute="top" secondItem="9YK-bA-3cT" secondAttribute="top" constant="8" id="QnQ-3Q-FR8"/>
                                     <constraint firstAttribute="bottom" secondItem="f7a-Tc-Xd4" secondAttribute="bottom" constant="8" id="UQ2-p1-noo"/>
                                     <constraint firstItem="tga-bC-EjI" firstAttribute="leading" secondItem="PGJ-HW-7bd" secondAttribute="trailing" constant="8" id="Wt4-t3-Kn6"/>
                                     <constraint firstItem="f7a-Tc-Xd4" firstAttribute="top" secondItem="9YK-bA-3cT" secondAttribute="top" constant="8" id="aHC-cg-t7e"/>
+                                    <constraint firstAttribute="bottom" secondItem="knA-xu-8CX" secondAttribute="bottom" constant="8" id="eF5-Uv-IYu"/>
                                     <constraint firstItem="PGJ-HW-7bd" firstAttribute="top" secondItem="9YK-bA-3cT" secondAttribute="top" constant="8" id="eI3-qN-K0B"/>
                                     <constraint firstItem="tga-bC-EjI" firstAttribute="top" secondItem="9YK-bA-3cT" secondAttribute="top" constant="8" id="oC1-Se-dYM"/>
                                     <constraint firstItem="tga-bC-EjI" firstAttribute="width" secondItem="tga-bC-EjI" secondAttribute="height" multiplier="1:1" id="ppo-GI-oMA"/>
+                                    <constraint firstItem="knA-xu-8CX" firstAttribute="top" secondItem="9YK-bA-3cT" secondAttribute="top" constant="8" id="qd2-8c-hWc"/>
+                                    <constraint firstItem="knA-xu-8CX" firstAttribute="leading" secondItem="f7a-Tc-Xd4" secondAttribute="trailing" constant="8" id="yn3-9l-k5p"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -108,6 +122,7 @@
                             <constraint firstItem="9YK-bA-3cT" firstAttribute="centerX" secondItem="cVo-Sh-q2l" secondAttribute="centerX" id="zaB-e7-L2R"/>
                         </constraints>
                         <connections>
+                            <outlet property="callButton" destination="knA-xu-8CX" id="p7S-LJ-Q42"/>
                             <outlet property="holderView" destination="mjj-7M-SYx" id="awF-p6-8g6"/>
                             <outlet property="messageButton" destination="PGJ-HW-7bd" id="iaX-9m-Tya"/>
                             <outlet property="publisherAudioButton" destination="f7a-Tc-Xd4" id="EZU-nU-AQ9"/>
@@ -201,6 +216,7 @@
         <image name="message" width="24" height="20"/>
         <image name="mic" width="21" height="26"/>
         <image name="screenshare" width="26" height="20"/>
+        <image name="startCall" width="15" height="30"/>
         <image name="video" width="24" height="14"/>
     </resources>
 </document>

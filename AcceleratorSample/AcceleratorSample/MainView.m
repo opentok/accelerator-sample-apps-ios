@@ -10,6 +10,7 @@
 @interface MainView()
 
 // 3 action buttons at the bottom of the view
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *publisherVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *publisherAudioButton;
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
@@ -22,11 +23,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    self.publisherAudioButton.enabled = YES;
-    self.publisherVideoButton.enabled = YES;
-    self.messageButton.enabled = YES;
-    self.screenShareButton.enabled = YES;
+    self.callButton.enabled = YES;
     
+    [self drawBorderOn:self.callButton withWhiteBorder:NO];
     [self drawBorderOn:self.publisherAudioButton withWhiteBorder:YES];
     [self drawBorderOn:self.publisherVideoButton withWhiteBorder:YES];
     [self drawBorderOn:self.messageButton withWhiteBorder:YES];
@@ -48,6 +47,11 @@
     publisherView.layer.backgroundColor = [UIColor grayColor].CGColor;
     publisherView.frame = self.frame;
     [self.holderView addSubview:publisherView];
+}
+
+- (void)connectCallHolder:(BOOL)connected {
+    [self.callButton setImage:connected ? [UIImage imageNamed:@"hangUp"] : [UIImage imageNamed:@"startCall"]  forState:UIControlStateNormal];
+    self.callButton.layer.backgroundColor = connected ? [UIColor colorWithRed:(205/255.0) green:(32/255.0) blue:(40/255.0) alpha:1.0].CGColor : [UIColor colorWithRed:(106/255.0) green:(173/255.0) blue:(191/255.0) alpha:1.0].CGColor;
 }
 
 - (void)updatePublisherAudio:(BOOL)connected {
@@ -110,6 +114,21 @@
         publisherView.frame = CGRectMake(self.bounds.size.width / 2, y, publisherWidth, height);
     }
     
+}
+
+#pragma mark - other controls
+- (void)enableControlButtonsForCall:(BOOL)enabled {
+    [self.publisherVideoButton setEnabled:enabled];
+    [self.publisherAudioButton setEnabled:enabled];
+    [self.messageButton setEnabled:enabled];
+    [self.screenShareButton setEnabled:enabled];
+}
+
+- (void)resetAllControl {
+    [self connectCallHolder:NO];
+    [self updatePublisherAudio:YES];
+    [self updatePublisherVideo:YES];
+    [self enableControlButtonsForCall:NO];
 }
 
 @end

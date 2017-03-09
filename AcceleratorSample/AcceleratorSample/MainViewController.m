@@ -39,8 +39,6 @@
     self.multipartyCommunicator = [[OTMultiPartyCommunicator alloc] init];
     self.multipartyCommunicator.dataSource = self;
     self.subscribers = [[NSMutableArray alloc] initWithCapacity:6];
-    
-    [self publisherCallButtonPressed:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -69,6 +67,7 @@
     else {
         [SVProgressHUD popActivity];
         [self.multipartyCommunicator disconnect];
+        [self.mainView resetAllControl];
     }
 }
 
@@ -78,6 +77,8 @@
     switch (signal) {
         case OTPublisherCreated: {
             [SVProgressHUD popActivity];
+            [self.mainView enableControlButtonsForCall:YES];
+            [self.mainView connectCallHolder:self.multipartyCommunicator.isCallEnabled];
             [self.mainView addPublisherView:self.multipartyCommunicator.publisherView];
             break;
         }

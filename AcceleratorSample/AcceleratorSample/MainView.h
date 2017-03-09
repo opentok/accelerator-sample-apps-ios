@@ -16,7 +16,12 @@
 - (void)updateSubscriberViews:(NSArray<OTMultiPartyRemote *> *)subscriberViews
                 publisherView:(UIView *)publisherView;
 
+- (void)connectCallHolder:(BOOL)connected;
 - (void)updatePublisherAudio:(BOOL)connected;
 - (void)updatePublisherVideo:(BOOL)connected;
+
+- (void)enableControlButtonsForCall:(BOOL)enabled;
+
+- (void)resetAllControl;
 
 @end
