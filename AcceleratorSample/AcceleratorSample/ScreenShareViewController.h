@@ -1,8 +1,6 @@
 //
 //  ScreenShareViewController.h
-//  AcceleratorSampleApp
 //
-//  Created by Xi Huang on 3/8/17.
 //  Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 

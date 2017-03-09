@@ -1,8 +1,6 @@
 //
 //  AppDelegate.h
-//  AcceleratorSample
 //
-//  Created by Xi Huang on 3/3/17.
 //  Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 

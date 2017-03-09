@@ -1,8 +1,6 @@
 //
 //  ScreenShareViewController.m
-//  AcceleratorSampleApp
 //
-//  Created by Xi Huang on 3/8/17.
 //  Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 
@@ -24,13 +22,10 @@
 
 @property (nonatomic) OTMultiPartyCommunicator *multipartyScreenSharer;
 @property (nonatomic) OTAnnotator *annotator;
+
 @end
 
 @implementation ScreenShareViewController
-
-- (void)setSharingImage:(UIImage *)sharingImage {
-    _sharingImage = sharingImage;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,20 +74,21 @@
     [self.multipartyScreenSharer connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
         
         if (error) {
-            [self dismissViewControllerAnimated:YES completion:^(){
+            [weakSelf dismissViewControllerAnimated:YES completion:^(){
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             }];
             return;
         }
         
         if (signal == OTPublisherCreated) {
+            
+            weakSelf.multipartyScreenSharer.publishAudio = NO;
             [weakSelf startAnnotation];
         }
     }];
 }
 
 - (void)startAnnotation {
-    self.multipartyScreenSharer.publishAudio = NO;
     self.annotator = [[OTAnnotator alloc] init];
     self.annotator.dataSource = self;
     __weak ScreenShareViewController *weakSelf = self;

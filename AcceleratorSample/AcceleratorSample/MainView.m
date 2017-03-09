@@ -1,7 +1,7 @@
 //
 //  MainView.m
 //
-// Copyright © 2016 Tokbox, Inc. All rights reserved.
+// Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 
 #import "MainView.h"
@@ -24,7 +24,6 @@
     [super awakeFromNib];
 
     self.callButton.enabled = YES;
-    
     [self drawBorderOn:self.callButton withWhiteBorder:NO];
     [self drawBorderOn:self.publisherAudioButton withWhiteBorder:YES];
     [self drawBorderOn:self.publisherVideoButton withWhiteBorder:YES];

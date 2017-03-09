@@ -1,7 +1,7 @@
 //
 //  DefaultTextChatTableViewController.m
 //
-//  Copyright © 2016 Tokbox, Inc. All rights reserved.
+//  Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 
 #import "TextChatTableViewController.h"
@@ -133,7 +133,7 @@
 }
 
 
--(void)updateLabel:(NSUInteger)Charlength {
+- (void)updateLabel:(NSUInteger)Charlength {
     countLabel.textColor = [UIColor blackColor];
     
     NSUInteger charLeft = maximumTextMessageLength - Charlength;

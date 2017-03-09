@@ -1,7 +1,7 @@
 //
 //  MainView.h
 //
-// Copyright © 2016 Tokbox, Inc. All rights reserved.
+// Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,9 +19,7 @@
 - (void)connectCallHolder:(BOOL)connected;
 - (void)updatePublisherAudio:(BOOL)connected;
 - (void)updatePublisherVideo:(BOOL)connected;
-
 - (void)enableControlButtonsForCall:(BOOL)enabled;
-
 - (void)resetAllControl;
 
 @end

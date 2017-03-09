@@ -1,7 +1,7 @@
 //
 //  DefaultTextChatTableViewController.h
 //
-//  Copyright © 2016 Tokbox, Inc. All rights reserved.
+//  Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 
 #import "OTTextChatViewController.h"

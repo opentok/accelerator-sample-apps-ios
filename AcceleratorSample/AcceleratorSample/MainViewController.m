@@ -1,7 +1,7 @@
 //
 //  MainViewController.m
 //
-// Copyright © 2016 Tokbox, Inc. All rights reserved.
+// Copyright © 2017 Tokbox, Inc. All rights reserved.
 //
 
 #import "MainView.h"
@@ -13,9 +13,6 @@
 #import "TextChatTableViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
-
-#define MAKE_WEAK(self) __weak typeof(self) weak##self = self
-#define MAKE_STRONG(self) __strong typeof(weak##self) strong##self = weak##self
 
 @interface MainViewController () <OTMultiPartyCommunicatorDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UIImage *selectedImage;
@@ -52,12 +49,11 @@
     if (!self.multipartyCommunicator.isCallEnabled) {
         [SVProgressHUD show];
 
-        MAKE_WEAK(self);
+        __weak MainViewController *weakSelf = self;
         [self.multipartyCommunicator connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
-            MAKE_STRONG(self);
-            strongself.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
+            weakSelf.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
             if (!error) {
-                [strongself handleCommunicationSignal:signal remote:subscriber];
+                [weakSelf handleCommunicationSignal:signal remote:subscriber];
             }
             else {
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
@@ -80,10 +76,6 @@
             [self.mainView enableControlButtonsForCall:YES];
             [self.mainView connectCallHolder:self.multipartyCommunicator.isCallEnabled];
             [self.mainView addPublisherView:self.multipartyCommunicator.publisherView];
-            break;
-        }
-        case OTPublisherDestroyed: {
-            NSLog(@"Your publishing feed stops streaming in OpenTok");
             break;
         }
         case OTSubscriberCreated: {
@@ -157,6 +149,7 @@
         [self presentViewController:self.screenShareMenuAlertController animated:YES completion:nil];
     }
     else {
+        // handle iPad
         UIPopoverController *popup = [[UIPopoverController alloc] initWithContentViewController:self.screenShareMenuAlertController];
         [popup presentPopoverFromRect:self.mainView.screenShareButton.bounds
                                inView:self.mainView.screenShareButton
@@ -194,7 +187,6 @@
                                                                      if (!_imagePickerViewContoller) {
                                                                          _imagePickerViewContoller = [[UIImagePickerController alloc] init];
                                                                          _imagePickerViewContoller.delegate = weakSelf;
-                                                                         _imagePickerViewContoller.allowsEditing = YES;
                                                                          _imagePickerViewContoller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                                                                      }
                                                                      [weakSelf presentViewController:_imagePickerViewContoller animated:YES completion:nil];
