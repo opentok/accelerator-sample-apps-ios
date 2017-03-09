@@ -92,6 +92,9 @@
         
         OTMultiPartyRemote *remote = subscriberViews[i];
         remote.subscriberView.frame = CGRectMake(x, y, subscriberWidth, height);
+        remote.subscriberView.controlView.backgroundColor = [UIColor blackColor];
+        remote.subscriberView.controlView.isVerticalAlignment = YES;
+        remote.subscriberView.controlView.frame = CGRectMake(10, 10, CGRectGetWidth(remote.subscriberView.bounds) * 0.2, CGRectGetHeight(remote.subscriberView.bounds) * 0.3);
         [self.holderView addSubview:remote.subscriberView];
         
         // update x and y value

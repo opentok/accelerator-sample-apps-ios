@@ -114,27 +114,26 @@
             [SVProgressHUD popActivity];
             break;
         }
-//        case OTSubscriberVideoDisabledByBadQuality:
-//        case OTSubscriberVideoDisabledBySubscriber:
-//        case OTSubscriberVideoDisabledByPublisher:{
-//            self.oneToOneCommunicator.subscribeToVideo = NO;
-//            break;
-//        }
-//        case OTSubscriberVideoEnabledByGoodQuality:
-//        case OTSubscriberVideoEnabledBySubscriber:
-//        case OTSubscriberVideoEnabledByPublisher:{
-//            self.oneToOneCommunicator.subscribeToVideo = YES;
-//            break;
-//        }
-//        case OTSubscriberVideoDisableWarning:{
-//            self.oneToOneCommunicator.subscribeToVideo = NO;
-//            [SVProgressHUD showErrorWithStatus:@"Network connection is unstable."];
-//            break;
-//        }
-//        case OTSubscriberVideoDisableWarningLifted:{
-//            self.oneToOneCommunicator.subscribeToVideo = YES;
-//            break;
-//        }
+        case OTSubscriberVideoDisabledByBadQuality:
+        case OTSubscriberVideoDisabledBySubscriber:
+        case OTSubscriberVideoDisabledByPublisher:{
+            remote.subscribeToVideo = NO;
+            break;
+        }
+        case OTSubscriberVideoEnabledByGoodQuality:
+        case OTSubscriberVideoEnabledBySubscriber:
+        case OTSubscriberVideoEnabledByPublisher:{
+            remote.subscribeToVideo = YES;
+            break;
+        }
+        case OTSubscriberVideoDisableWarning:{
+            remote.subscribeToVideo = NO;
+            break;
+        }
+        case OTSubscriberVideoDisableWarningLifted:{
+            remote.subscribeToVideo = YES;
+            break;
+        }
         default: break;
     }
 }
