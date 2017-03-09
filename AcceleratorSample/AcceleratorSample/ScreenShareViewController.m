@@ -52,7 +52,7 @@
     }
     
     if (self.annotator.annotationScrollView.toolbarView) {
-        self.annotator.annotationScrollView.toolbarView.frame = self.annotationToolbarView.bounds;
+        self.annotator.annotationScrollView.toolbarView.frame = self.annotationToolbarView.frame;
     }
 }
 
@@ -106,14 +106,17 @@
         
         if (signal == OTAnnotationSessionDidConnect) {
             
+            // using frame and self.view to contain toolbarView is for having more space to interact with color picker
             [weakSelf.annotator.annotationScrollView initializeToolbarView];
             weakSelf.annotator.annotationScrollView.toolbarView.toolbarViewDataSource = self;
-            weakSelf.annotator.annotationScrollView.toolbarView.frame = weakSelf.annotationToolbarView.bounds;
-            [weakSelf.annotationToolbarView addSubview:weakSelf.annotator.annotationScrollView.toolbarView];
+            weakSelf.annotator.annotationScrollView.toolbarView.frame = weakSelf.annotationToolbarView.frame;
+            [weakSelf.view addSubview:weakSelf.annotator.annotationScrollView.toolbarView];
             
             weakSelf.annotator.annotationScrollView.frame = weakSelf.annotationView.bounds;
             weakSelf.annotator.annotationScrollView.scrollView.contentSize = CGSizeMake(CGRectGetWidth(weakSelf.annotator.annotationScrollView.bounds), CGRectGetHeight(weakSelf.annotator.annotationScrollView.bounds));
             [weakSelf.annotationView addSubview:weakSelf.annotator.annotationScrollView];
+            
+            weakSelf.annotator.annotationScrollView.annotatable = NO;
         }
     }];
 }
