@@ -8,37 +8,29 @@
 #import "UIView+Helper.h"
 
 @interface MainView()
-@property (weak, nonatomic) IBOutlet UIView *publisherView;
-@property (weak, nonatomic) IBOutlet UIView *subscriberView;
 
 // 3 action buttons at the bottom of the view
 @property (weak, nonatomic) IBOutlet UIButton *publisherVideoButton;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *publisherAudioButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *reverseCameraButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *subscriberVideoButton;
-@property (weak, nonatomic) IBOutlet UIButton *subscriberAudioButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *messageButton;
+@property (weak, nonatomic) IBOutlet UIButton *screenShareButton;
+@property (weak, nonatomic) IBOutlet UIView *holderView;
 @end
 
 @implementation MainView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.publisherView.hidden = YES;
-    self.publisherView.alpha = 1;
-    self.publisherView.layer.borderWidth = 1;
-    self.publisherView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.publisherView.layer.backgroundColor = [UIColor grayColor].CGColor;
-    self.publisherView.layer.cornerRadius = 3;
+
+    self.publisherAudioButton.enabled = YES;
+    self.publisherVideoButton.enabled = YES;
+    self.messageButton.enabled = YES;
+    self.screenShareButton.enabled = YES;
     
     [self drawBorderOn:self.publisherAudioButton withWhiteBorder:YES];
-    [self drawBorderOn:self.callButton withWhiteBorder:NO];
     [self drawBorderOn:self.publisherVideoButton withWhiteBorder:YES];
-    [self showSubscriberControls:NO];
+    [self drawBorderOn:self.messageButton withWhiteBorder:YES];
+    [self drawBorderOn:self.screenShareButton withWhiteBorder:YES];
 }
 
 - (void)drawBorderOn:(UIView *)view
@@ -53,22 +45,11 @@
 
 #pragma mark - publisher view
 - (void)addPublisherView:(UIView *)publisherView {
-    
-    [self.publisherView setHidden:NO];
-    [self.publisherView addSubview:publisherView];
-    publisherView.translatesAutoresizingMaskIntoConstraints = NO;
-    [publisherView addAttachedLayoutConstantsToSuperview];
+    publisherView.layer.backgroundColor = [UIColor grayColor].CGColor;
+    publisherView.frame = self.frame;
+    [self.holderView addSubview:publisherView];
 }
 
-- (void)removePublisherView {
-    [self.publisherView setHidden:YES];
-    [self.publisherView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-}
-
-- (void)connectCallHolder:(BOOL)connected {
-    [self.callButton setImage:connected ? [UIImage imageNamed:@"hangUp"] : [UIImage imageNamed:@"startCall"]  forState:UIControlStateNormal];
-    self.callButton.layer.backgroundColor = connected ? [UIColor colorWithRed:(205/255.0) green:(32/255.0) blue:(40/255.0) alpha:1.0].CGColor : [UIColor colorWithRed:(106/255.0) green:(173/255.0) blue:(191/255.0) alpha:1.0].CGColor;
-}
 - (void)updatePublisherAudio:(BOOL)connected {
     [self.publisherAudioButton setImage:connected ? [UIImage imageNamed:@"mic"] : [UIImage imageNamed:@"mutedMic"] forState:UIControlStateNormal];
 }
@@ -77,50 +58,58 @@
     [self.publisherVideoButton setImage:connected ? [UIImage imageNamed:@"video"] : [UIImage imageNamed:@"noVideo"] forState:UIControlStateNormal];
 }
 
-#pragma mark - subscriber view
-- (void)addSubscribeView:(UIView *)subscriberView {
-    [self.subscriberView addSubview:subscriberView];
-    subscriberView.translatesAutoresizingMaskIntoConstraints = NO;
-    [subscriberView addAttachedLayoutConstantsToSuperview];
-}
-
-- (void)removeSubscriberView {
-    [self.subscriberView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-}
-
-- (void)updateSubscriberAudioButton:(BOOL)connected {
-    [self.subscriberAudioButton setImage:connected ? [UIImage imageNamed:@"audio"] : [UIImage imageNamed:@"noAudio"] forState:UIControlStateNormal];
-}
-
-- (void)updateSubscriberVideoButton:(BOOL)connected {
-    [self.subscriberVideoButton setImage:connected ? [UIImage imageNamed:@"video"] : [UIImage imageNamed:@"noVideo"] forState:UIControlStateNormal];
-}
-
-- (void)showSubscriberControls:(BOOL)shown {
-    [self.subscriberAudioButton setHidden:!shown];
-    [self.subscriberVideoButton setHidden:!shown];
-}
-
-#pragma mark - other controls
-- (void)enableControlButtonsForCall:(BOOL)enabled {
-    [self.subscriberAudioButton setEnabled:enabled];
-    [self.subscriberVideoButton setEnabled:enabled];
-    [self.publisherVideoButton setEnabled:enabled];
-    [self.publisherAudioButton setEnabled:enabled];
-}
-
-- (void)showReverseCameraButton; {
-    self.reverseCameraButton.hidden = NO;
-}
-
-- (void)resetAllControl {
-    [self removePublisherView];
-    [self connectCallHolder:NO];
-    [self updatePublisherAudio:YES];
-    [self updatePublisherVideo:YES];
-    [self updateSubscriberAudioButton:YES];
-    [self updateSubscriberVideoButton:YES];
-    [self enableControlButtonsForCall:NO];
+- (void)updateSubscriberViews:(NSArray<OTMultiPartyRemote *> *)subscriberViews
+                publisherView:(UIView *)publisherView {
+    
+    for (UIView *view in self.holderView.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    if (subscriberViews.count == 0) {
+        [self addPublisherView:publisherView];
+        return;
+    }
+    
+    if (subscriberViews.count == 1) {
+        [self addPublisherView:publisherView];
+        OTMultiPartyRemote *remote = [subscriberViews lastObject];
+        remote.subscriberView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height / 2);
+        [self.holderView addSubview:remote.subscriberView];
+        return;
+    }
+    
+    CGFloat height, subscriberWidth, publisherWidth;
+    height = self.bounds.size.height / (subscriberViews.count / 2 + 1);
+    subscriberWidth = subscriberViews.count + 1 > 2 ? self.bounds.size.width / 2 :  self.bounds.size.width;
+    publisherWidth = (subscriberViews.count + 1) % 2 == 0 ? self.bounds.size.width / 2 : self.bounds.size.width;
+    
+    CGFloat x = 0, y = 0;
+    for (int i = 0; i < subscriberViews.count; i++) {
+        
+        OTMultiPartyRemote *remote = subscriberViews[i];
+        remote.subscriberView.frame = CGRectMake(x, y, subscriberWidth, height);
+        [self.holderView addSubview:remote.subscriberView];
+        
+        // update x and y value
+        if ((i + 1) % 2 == 0) {
+            x = 0;
+        }
+        else {
+            x = subscriberWidth;
+        }
+        y = (i + 1) / 2 * height;
+    }
+    
+    [self addPublisherView:publisherView];
+    if (subscriberWidth != publisherWidth) {
+        // publisher is at the bottom
+        publisherView.frame = CGRectMake(0, y, publisherWidth, height);
+    }
+    else {
+        // publisher is at the bottom right
+        publisherView.frame = CGRectMake(self.bounds.size.width / 2, y, publisherWidth, height);
+    }
+    
 }
 
 @end

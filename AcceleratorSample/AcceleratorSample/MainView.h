@@ -5,28 +5,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OTMultiPartyCommunicator.h"
 
 @interface MainView : UIView
 
+@property (readonly, weak, nonatomic) UIButton *screenShareButton;
+
 // publisher view
 - (void)addPublisherView:(UIView *)publisherView;
-- (void)removePublisherView;
+- (void)updateSubscriberViews:(NSArray<OTMultiPartyRemote *> *)subscriberViews
+                publisherView:(UIView *)publisherView;
 
-- (void)connectCallHolder:(BOOL)connected;
 - (void)updatePublisherAudio:(BOOL)connected;
 - (void)updatePublisherVideo:(BOOL)connected;
 
-// subscriber view
-- (void)addSubscribeView:(UIView *)subscriberView;
-- (void)removeSubscriberView;
-
-- (void)updateSubscriberAudioButton:(BOOL)connected;
-- (void)updateSubscriberVideoButton:(BOOL)connected;
-- (void)showSubscriberControls:(BOOL)shown;
-
-// other controls
-- (void)enableControlButtonsForCall:(BOOL)enabled;
-- (void)showReverseCameraButton;
-
-- (void)resetAllControl;
 @end

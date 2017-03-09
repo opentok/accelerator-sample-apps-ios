@@ -5,6 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OTMultiPartyCommunicator.h"
 
 @interface MainViewController : UIViewController
 

@@ -18,9 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:@"apikey"
-                                                                        sessionId:@"sessionid"
-                                                                            token:@"token"];
+    self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:@"100"
+                                                                        sessionId:@"1_MX4xMDB-fjE0ODkwMTIyMzE3MDh-bnNwSklobUlxWDhSUGdWZmgrZmdsQy82fn4"
+                                                                            token:@"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9NTQyMWE3MGJlOTJjZDg2ZTI4NjEzYzQ5NzgxZjFkMTMyM2Y3MWZjNzpzZXNzaW9uX2lkPTFfTVg0eE1EQi1makUwT0Rrd01USXlNekUzTURoLWJuTndTa2xvYlVseFdEaFNVR2RXWm1nclptZHNReTgyZm40JmNyZWF0ZV90aW1lPTE0ODkwMTIyMzEmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ4OTAxMjIzMS44MDQ4ODUzNTg5OTcyJmV4cGlyZV90aW1lPTE0OTE2MDQyMzE="];
     return YES;
 }
 
