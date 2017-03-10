@@ -99,6 +99,11 @@ class MainViewController: UIViewController {
         multipartyCommunicator!.dataSource = self
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
+    }
+    
     fileprivate func handleCommunicationSignal(_ signal: OTCommunicationSignal, remote: OTMultiPartyRemote?) {
         switch signal {
         case .publisherCreated: // join a call
@@ -114,11 +119,13 @@ class MainViewController: UIViewController {
             SVProgressHUD.popActivity()
             if let remote = remote, subscribers.index(of: remote) == nil {
                 subscribers.append(remote)
+                mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
             }
             
         case .subscriberDestroyed:  // one participant leaves
             if let remote = remote, let index = subscribers.index(of: remote) {
                 subscribers.remove(at: index)
+                mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
             }
 
         case .sessionDidBeginReconnecting, .subscriberCreated:
