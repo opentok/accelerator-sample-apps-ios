@@ -4,20 +4,6 @@
 
 ## Quick start
 
-This section shows you how to prepare, build, and run the sample application. With the sample application you can:
-
-- [Start a Audio/Video Call](#call)
-- [Send text messages](#textchat)
-- [Share your screen](#screenshare)
-- [Annotate on the screen](#annotation)
-
-###Resources
-
-This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
-
- - [TextChat](https://github.com/opentok/accelerator-textchat-ios).
- - [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta3).
-
 ### Install the project files
 
 Use CocoaPods to install the project files and dependencies.
@@ -53,6 +39,13 @@ Configure the sample app code. Then, build and run the app.
 1. Use Xcode to build and run the app on an iOS simulator or device.
 
 ## Exploring the code
+
+This section shows you how to prepare, build, and run the sample application. With the sample application you can:
+
+- [Start a Audio/Video Call](#call)
+- [Send text messages](#textchat)
+- [Share your screen](#screenshare)
+- [Annotate on the screen](#annotation)
 
 For details about developing with the SDK and the APIs this sample uses, see the [OpenTok iOS SDK Requirements](https://tokbox.com/developer/sdks/ios/) and the [OpenTok iOS SDK Reference](https://tokbox.com/developer/sdks/ios/reference/).
 
@@ -385,3 +378,10 @@ fileprivate func startAnnotation() {
     }
 }
 ```
+
+###Resources
+
+This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
+
+ - [TextChat](https://github.com/opentok/accelerator-textchat-ios).
+ - [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta4).
