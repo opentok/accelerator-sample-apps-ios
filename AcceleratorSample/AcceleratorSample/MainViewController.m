@@ -67,6 +67,7 @@
         [SVProgressHUD popActivity];
         [self.multipartyCommunicator disconnect];
         [self.mainView resetAllControl];
+        [self.subscribers removeAllObjects];
     }
 }
 
@@ -108,18 +109,6 @@
         }
         case OTSessionDidReconnect: {
             [SVProgressHUD popActivity];
-            break;
-        }
-        case OTSubscriberVideoDisabledByBadQuality:
-        case OTSubscriberVideoDisabledBySubscriber:
-        case OTSubscriberVideoDisabledByPublisher:{
-            remote.subscribeToVideo = NO;
-            break;
-        }
-        case OTSubscriberVideoEnabledByGoodQuality:
-        case OTSubscriberVideoEnabledBySubscriber:
-        case OTSubscriberVideoEnabledByPublisher:{
-            remote.subscribeToVideo = YES;
             break;
         }
         case OTSubscriberVideoDisableWarning:{

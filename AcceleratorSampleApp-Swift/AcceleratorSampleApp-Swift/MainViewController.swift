@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
             SVProgressHUD.dismiss()
             multipartyCommunicator.disconnect()
             mainView.resetAllControl()
+            subscribers.removeAll()
         }
     }
     
@@ -134,16 +135,10 @@ class MainViewController: UIViewController {
         case .sessionDidReconnect:
             SVProgressHUD.popActivity()
             
-        case .subscriberVideoEnabledByPublisher,
-             .subscriberVideoEnabledBySubscriber,
-             .subscriberVideoEnabledByGoodQuality,
-             .subscriberVideoDisableWarningLifted:
+        case .subscriberVideoDisableWarningLifted:
             remote?.isSubscribeToVideo = true
             
-        case .subscriberVideoDisabledByPublisher,
-             .subscriberVideoDisabledBySubscriber,
-             .subscriberVideoDisabledByBadQuality,
-             .subscriberVideoDisableWarning:
+        case .subscriberVideoDisableWarning:
             remote?.isSubscribeToVideo = false
 
         default:break
