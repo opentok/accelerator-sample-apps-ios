@@ -24,11 +24,11 @@ Configure the sample app code. Then, build and run the app.
 
     ```objc
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:<#apikey#>
+        self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:<#apikey#>
                                                                         sessionId:<#sessionid#>
                                                                             token:<#token#>];
-    return YES;
-}
+        return YES;
+    }
     ```
 
 1. Use Xcode to build and run the app on an iOS simulator or device.
@@ -45,53 +45,72 @@ _**NOTE:** This sample app collects anonymous usage data for internal TokBox pur
 When the call button is pressed `OTMultiPartyCommunicator` initiates the connection to the OpenTok session and sets up the listeners for the publisher and subscriber streams:
 
 
-   ```objc
-- (IBAction)publisherCallButtonPressed:(UIButton *)sender {
-    
-    if (!self.multipartyCommunicator.isCallEnabled) {
-        [SVProgressHUD show];
-
-        __weak MainViewController *weakSelf = self;
-        [self.multipartyCommunicator connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
-            weakSelf.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
-            if (!error) {
-                [weakSelf handleCommunicationSignal:signal remote:subscriber];
-            }
-            else {
-                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-            }
-        }];
+```objc
+__weak MainViewController *weakSelf = self;
+[self.multipartyCommunicator connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
+    weakSelf.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
+    if (!error) {
+        [weakSelf handleCommunicationSignal:signal remote:subscriber];
     }
     else {
-        [SVProgressHUD popActivity];
-        [self.multipartyCommunicator disconnect];
-        [self.mainView resetAllControl];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }
+}];
+```
+
+```swift
+@IBAction func callButtonPressed(_ sender: Any) {
+  
+    guard let multipartyCommunicator = multipartyCommunicator else {return}
+    
+    if !multipartyCommunicator.isCallEnabled {
+        
+        // start call
+        SVProgressHUD.show()
+        multipartyCommunicator.connect {
+            [unowned self] (signal, remote, error) in
+            
+            guard error == nil else {
+                SVProgressHUD.showError(withStatus: error!.localizedDescription)
+                return
+            }
+            self.handleCommunicationSignal(signal, remote: remote)
+        }
+    }
+    else {
+        
+        // end call
+        SVProgressHUD.dismiss()
+        multipartyCommunicator.disconnect()
+        mainView.resetAllControl()
     }
 }
-   ```
+```
+
+
 The remote connection to the subscriber is handled according to the signal obtained:
 
    ```objc
-- (void)handleCommunicationSignal:(OTCommunicationSignal)signal
-                           remote:(OTMultiPartyRemote *)remote {
-   
-    switch (signal) {
-		...
-            case OTSubscriberVideoEnabledByPublisher:{
-            remote.subscribeToVideo = YES;
-            break;
+    - (void)handleCommunicationSignal:(OTCommunicationSignal)signal
+                            remote:(OTMultiPartyRemote *)remote {
+    
+        switch (signal) {
+            ...
+                case OTSubscriberVideoEnabledByPublisher:{
+                remote.subscribeToVideo = YES;
+                break;
+            }
+            case OTSubscriberVideoDisableWarning:{
+                remote.subscribeToVideo = NO;
+                break;
+            }
+            case OTSubscriberVideoDisableWarningLifted:{
+                remote.subscribeToVideo = YES;
+                break;
+            }
+            default: break;
         }
-        case OTSubscriberVideoDisableWarning:{
-            remote.subscribeToVideo = NO;
-            break;
-        }
-        case OTSubscriberVideoDisableWarningLifted:{
-            remote.subscribeToVideo = YES;
-            break;
-        }
-        default: break;
     }
-}
    ``` 
    
 ### TextChat
