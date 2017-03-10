@@ -5,16 +5,31 @@
 //
 
 #import "MainView.h"
-#import "UIView+Helper.h"
+
+@interface ControlButton: UIButton
+
+@end
+
+@implementation ControlButton
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.layer.cornerRadius = self.bounds.size.width / 2;
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+@end
 
 @interface MainView()
 
 // 3 action buttons at the bottom of the view
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *publisherVideoButton;
-@property (weak, nonatomic) IBOutlet UIButton *publisherAudioButton;
-@property (weak, nonatomic) IBOutlet UIButton *messageButton;
-@property (weak, nonatomic) IBOutlet UIButton *screenShareButton;
+@property (weak, nonatomic) IBOutlet ControlButton *publisherVideoButton;
+@property (weak, nonatomic) IBOutlet ControlButton *publisherAudioButton;
+@property (weak, nonatomic) IBOutlet ControlButton *messageButton;
+@property (weak, nonatomic) IBOutlet ControlButton *screenShareButton;
 @property (weak, nonatomic) IBOutlet UIView *holderView;
 @end
 
@@ -24,21 +39,7 @@
     [super awakeFromNib];
 
     self.callButton.enabled = YES;
-    [self drawBorderOn:self.callButton withWhiteBorder:NO];
-    [self drawBorderOn:self.publisherAudioButton withWhiteBorder:YES];
-    [self drawBorderOn:self.publisherVideoButton withWhiteBorder:YES];
-    [self drawBorderOn:self.messageButton withWhiteBorder:YES];
-    [self drawBorderOn:self.screenShareButton withWhiteBorder:YES];
-}
-
-- (void)drawBorderOn:(UIView *)view
-     withWhiteBorder:(BOOL)withWhiteBorder {
-    
-    view.layer.cornerRadius = (view.bounds.size.width / 2);
-    if (withWhiteBorder) {
-        view.layer.borderWidth = 1;
-        view.layer.borderColor = [UIColor whiteColor].CGColor;
-    }
+    self.callButton.layer.cornerRadius = self.callButton.bounds.size.width / 2;
 }
 
 #pragma mark - publisher view
@@ -91,12 +92,15 @@
         
         OTMultiPartyRemote *remote = subscriberViews[i];
         remote.subscriberView.frame = CGRectMake(x, y, subscriberWidth, height);
+        
+        // this will position and audio/video controls
         remote.subscriberView.controlView.backgroundColor = [UIColor blackColor];
         remote.subscriberView.controlView.isVerticalAlignment = YES;
         remote.subscriberView.controlView.frame = CGRectMake(10, 10, CGRectGetWidth(remote.subscriberView.bounds) * 0.2, CGRectGetHeight(remote.subscriberView.bounds) * 0.3);
+        
         [self.holderView addSubview:remote.subscriberView];
         
-        // update x and y value
+        // update x and y value for the next subscriber view
         if ((i + 1) % 2 == 0) {
             x = 0;
         }

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,12 +13,12 @@
         <!--Main View Controller-->
         <scene sceneID="qAT-vz-ahO">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" id="sfx-Dl-8Us" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="sfx-Dl-8Us" customClass="MainViewController" customModule="AcceleratorSampleApp_Swift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xit-5b-cS2"/>
                         <viewControllerLayoutGuide type="bottom" id="F9i-UN-tgV"/>
                     </layoutGuides>
-                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cVo-Sh-q2l" customClass="MainView">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cVo-Sh-q2l" customClass="MainView" customModule="AcceleratorSampleApp_Swift">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -28,7 +29,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9YK-bA-3cT">
                                 <rect key="frame" x="38.5" y="581" width="298" height="66"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-ee-zVb" userLabel="publisherVideoButton" customClass="ControlButton">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-ee-zVb" userLabel="publisherVideoButton" customClass="ControlButton" customModule="AcceleratorSampleApp_Swift">
                                         <rect key="frame" x="8" y="8" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -37,10 +38,10 @@
                                         </constraints>
                                         <state key="normal" image="video"/>
                                         <connections>
-                                            <action selector="publisherVideoButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="pS4-w8-yy0"/>
+                                            <action selector="publisherVideoButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="o31-23-BlF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7a-Tc-Xd4" userLabel="publisherMicButton" customClass="ControlButton">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7a-Tc-Xd4" userLabel="publisherMicButton" customClass="ControlButton" customModule="AcceleratorSampleApp_Swift">
                                         <rect key="frame" x="66" y="8" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -49,10 +50,10 @@
                                         </constraints>
                                         <state key="normal" image="mic"/>
                                         <connections>
-                                            <action selector="publisherAudioButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="e8V-YE-vMB"/>
+                                            <action selector="publisherAudioButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="ofe-8d-YYU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGJ-HW-7bd" userLabel="messageButton" customClass="ControlButton">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGJ-HW-7bd" userLabel="messageButton" customClass="ControlButton" customModule="AcceleratorSampleApp_Swift">
                                         <rect key="frame" x="182" y="8" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -61,10 +62,10 @@
                                         </constraints>
                                         <state key="normal" image="message"/>
                                         <connections>
-                                            <action selector="textMessageButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="tjQ-2u-beB"/>
+                                            <action selector="textMessageButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="jsc-ek-ycf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tga-bC-EjI" userLabel="messageButton" customClass="ControlButton">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tga-bC-EjI" userLabel="messageButton" customClass="ControlButton" customModule="AcceleratorSampleApp_Swift">
                                         <rect key="frame" x="240" y="8" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -73,8 +74,7 @@
                                         </constraints>
                                         <state key="normal" image="screenshare"/>
                                         <connections>
-                                            <action selector="screenShareButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="aE0-7i-hKq"/>
-                                            <action selector="textMessageButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="S4r-6R-GhV"/>
+                                            <action selector="screenShareButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="fjB-AZ-Xpl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knA-xu-8CX" userLabel="publisherCallButton">
@@ -86,7 +86,7 @@
                                         </constraints>
                                         <state key="normal" image="startCall"/>
                                         <connections>
-                                            <action selector="publisherCallButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="HEQ-Cx-ikt"/>
+                                            <action selector="callButtonPressed:" destination="sfx-Dl-8Us" eventType="touchUpInside" id="qhz-He-qy8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -122,12 +122,12 @@
                             <constraint firstItem="9YK-bA-3cT" firstAttribute="centerX" secondItem="cVo-Sh-q2l" secondAttribute="centerX" id="zaB-e7-L2R"/>
                         </constraints>
                         <connections>
-                            <outlet property="callButton" destination="knA-xu-8CX" id="p7S-LJ-Q42"/>
-                            <outlet property="holderView" destination="mjj-7M-SYx" id="awF-p6-8g6"/>
-                            <outlet property="messageButton" destination="PGJ-HW-7bd" id="iaX-9m-Tya"/>
-                            <outlet property="publisherAudioButton" destination="f7a-Tc-Xd4" id="EZU-nU-AQ9"/>
-                            <outlet property="publisherVideoButton" destination="lwu-ee-zVb" id="4va-Zd-4XY"/>
-                            <outlet property="screenShareButton" destination="tga-bC-EjI" id="QZl-i5-B4d"/>
+                            <outlet property="callButton" destination="knA-xu-8CX" id="Q3U-FV-JHy"/>
+                            <outlet property="holderView" destination="mjj-7M-SYx" id="dTb-DN-nzS"/>
+                            <outlet property="messageButton" destination="PGJ-HW-7bd" id="AGi-NA-7vu"/>
+                            <outlet property="publisherAudioButton" destination="f7a-Tc-Xd4" id="9sn-Xw-jkF"/>
+                            <outlet property="publisherVideoButton" destination="lwu-ee-zVb" id="nrj-E7-ouT"/>
+                            <outlet property="screenShareButton" destination="tga-bC-EjI" id="xIp-GO-lnH"/>
                         </connections>
                     </view>
                     <connections>
@@ -141,7 +141,7 @@
         <!--Screen Share View Controller-->
         <scene sceneID="GHt-hh-8c6">
             <objects>
-                <viewController id="fNv-d8-po2" customClass="ScreenShareViewController" sceneMemberID="viewController">
+                <viewController id="fNv-d8-po2" customClass="ScreenShareViewController" customModule="AcceleratorSampleApp_Swift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Oo-Ng-lTm"/>
                         <viewControllerLayoutGuide type="bottom" id="47B-Se-p3w"/>
@@ -182,7 +182,7 @@
                                 </constraints>
                                 <state key="normal" image="closeXWhite"/>
                                 <connections>
-                                    <action selector="exitButtonPressed:" destination="fNv-d8-po2" eventType="touchUpInside" id="kSr-qg-gUN"/>
+                                    <action selector="exitButtonPressed:" destination="fNv-d8-po2" eventType="touchUpInside" id="Bdc-Md-ntj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -200,10 +200,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="annotationToolbarView" destination="D74-vc-TER" id="Hfu-0L-zkN"/>
-                        <outlet property="annotationView" destination="Ud6-cS-ei2" id="IcZ-aM-IG0"/>
-                        <outlet property="extiButton" destination="lBi-DQ-xby" id="pOW-ze-BtG"/>
-                        <outlet property="imageView" destination="j4b-Nd-Yd4" id="bdG-G5-lvD"/>
+                        <outlet property="annotationToolbarView" destination="D74-vc-TER" id="ynp-hk-dH6"/>
+                        <outlet property="annotationView" destination="Ud6-cS-ei2" id="tsW-0i-4gd"/>
+                        <outlet property="extiButton" destination="lBi-DQ-xby" id="ez4-vN-Bd7"/>
+                        <outlet property="imageView" destination="j4b-Nd-Yd4" id="woX-up-g9y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOu-Mg-qY5" userLabel="First Responder" sceneMemberID="firstResponder"/>

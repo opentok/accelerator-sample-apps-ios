@@ -47,11 +47,12 @@
 - (IBAction)publisherCallButtonPressed:(UIButton *)sender {
     
     if (!self.multipartyCommunicator.isCallEnabled) {
+        
+        // start call
         [SVProgressHUD show];
 
         __weak MainViewController *weakSelf = self;
         [self.multipartyCommunicator connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
-            weakSelf.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
             if (!error) {
                 [weakSelf handleCommunicationSignal:signal remote:subscriber];
             }
@@ -61,6 +62,8 @@
         }];
     }
     else {
+        
+        // end call
         [SVProgressHUD popActivity];
         [self.multipartyCommunicator disconnect];
         [self.mainView resetAllControl];
@@ -71,17 +74,18 @@
                            remote:(OTMultiPartyRemote *)remote {
     
     switch (signal) {
-        case OTPublisherCreated: {
+        case OTPublisherCreated: {  // join a call
             [SVProgressHUD popActivity];
+            self.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
             [self.mainView enableControlButtonsForCall:YES];
             [self.mainView connectCallHolder:self.multipartyCommunicator.isCallEnabled];
             [self.mainView addPublisherView:self.multipartyCommunicator.publisherView];
             break;
         }
-        case OTSubscriberCreated: {
+        case OTSubscriberCreated: { // one participant is ready to join
             [SVProgressHUD show];
         }
-        case OTSubscriberReady: {
+        case OTSubscriberReady: {   // one participant joins
             [SVProgressHUD popActivity];
             if (![self.subscribers containsObject:remote]) {
                 [self.subscribers addObject:remote];
@@ -90,7 +94,7 @@
             }
             break;
         }
-        case OTSubscriberDestroyed:{
+        case OTSubscriberDestroyed:{    // one participant leaves
             if ([self.subscribers containsObject:remote]) {
                 [self.subscribers removeObject:remote];
                 [self.mainView updateSubscriberViews:self.subscribers
@@ -146,15 +150,15 @@
 
 - (IBAction)screenShareButtonPressed:(id)sender {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        // handle iPhone
         [self presentViewController:self.screenShareMenuAlertController animated:YES completion:nil];
     }
     else {
         // handle iPad
-        UIPopoverController *popup = [[UIPopoverController alloc] initWithContentViewController:self.screenShareMenuAlertController];
-        [popup presentPopoverFromRect:self.mainView.screenShareButton.bounds
-                               inView:self.mainView.screenShareButton
-             permittedArrowDirections:UIPopoverArrowDirectionAny
-                             animated:YES];
+        self.screenShareMenuAlertController.modalPresentationStyle = UIModalPresentationPopover;
+        self.screenShareMenuAlertController.popoverPresentationController.sourceView = self.mainView.screenShareButton;
+        self.screenShareMenuAlertController.popoverPresentationController.sourceRect = self.mainView.screenShareButton.bounds;
+        [self presentViewController:self.screenShareMenuAlertController animated:YES completion:nil];
     }
 }
 
