@@ -46,8 +46,10 @@ class ScreenShareViewController: UIViewController {
     
     fileprivate func startScreenSharing() {
         multipartyScreenSharer = OTMultiPartyCommunicator.init(view: annotationView)
-        multipartyScreenSharer?.isPublishOnly = true
         multipartyScreenSharer?.dataSource = self
+        
+        // publishOnly here is to avoid subscripting to those who already subscribed
+        multipartyScreenSharer?.isPublishOnly = true
         
         multipartyScreenSharer?.connect {
             [unowned self](signal, remote, error) in
@@ -80,13 +82,15 @@ class ScreenShareViewController: UIViewController {
             }
             
             if signal == .sessionDidConnect {
-                self.annotator?.annotationScrollView.initializeToolbarView()
                 
                 guard let annotator = self.annotator,
                         let toolbarView = annotator.annotationScrollView.toolbarView else {
                     print("Error on launching annotation")
                     return
                 }
+                
+                // using frame and self.view to contain toolbarView is for having more space to interact with color picker
+                self.annotator?.annotationScrollView.initializeToolbarView()
                 toolbarView.toolbarViewDataSource = self
                 toolbarView.frame = self.annotationToolbarView.frame
                 self.view.addSubview(toolbarView)

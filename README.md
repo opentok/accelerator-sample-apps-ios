@@ -24,11 +24,18 @@ Configure the sample app code. Then, build and run the app.
 
     ```objc
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:<#apikey#>
-                                                                        sessionId:<#sessionid#>
-                                                                            token:<#token#>];
-    return YES;
-}
+        self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:<#apikey#>
+                                                                            sessionId:<#sessionid#>
+                                                                                token:<#token#>];
+        return YES;
+    }
+    ```
+    ```swift
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        session = OTAcceleratorSession.init(openTokApiKey: <#apikey#>, sessionId: <#sessionid#>, token: <#token#>)
+        return true
+    }
     ```
 
 1. Use Xcode to build and run the app on an iOS simulator or device.
@@ -45,71 +52,118 @@ _**NOTE:** This sample app collects anonymous usage data for internal TokBox pur
 When the call button is pressed `OTMultiPartyCommunicator` initiates the connection to the OpenTok session and sets up the listeners for the publisher and subscriber streams:
 
 
-   ```objc
-- (IBAction)publisherCallButtonPressed:(UIButton *)sender {
-    
-    if (!self.multipartyCommunicator.isCallEnabled) {
-        [SVProgressHUD show];
-
-        __weak MainViewController *weakSelf = self;
-        [self.multipartyCommunicator connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
-            weakSelf.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
-            if (!error) {
-                [weakSelf handleCommunicationSignal:signal remote:subscriber];
-            }
-            else {
-                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-            }
-        }];
+```objc
+// start call
+[SVProgressHUD show];
+__weak MainViewController *weakSelf = self;
+[self.multipartyCommunicator connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
+    if (!error) {
+        [weakSelf handleCommunicationSignal:signal remote:subscriber];
     }
     else {
-        [SVProgressHUD popActivity];
-        [self.multipartyCommunicator disconnect];
-        [self.mainView resetAllControl];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }
+}];
+```
+
+```swift
+// start call
+SVProgressHUD.show()
+multipartyCommunicator.connect {
+    [unowned self] (signal, remote, error) in
+    
+    guard error == nil else {
+        SVProgressHUD.showError(withStatus: error!.localizedDescription)
+        return
+    }
+    self.handleCommunicationSignal(signal, remote: remote)
 }
-   ```
+```
+
+
 The remote connection to the subscriber is handled according to the signal obtained:
 
-   ```objc
+```objc
 - (void)handleCommunicationSignal:(OTCommunicationSignal)signal
-                           remote:(OTMultiPartyRemote *)remote {
-   
+                        remote:(OTMultiPartyRemote *)remote {
     switch (signal) {
-		...
-            case OTSubscriberVideoEnabledByPublisher:{
-            remote.subscribeToVideo = YES;
+        case OTPublisherCreated: {  // join a call
+            [SVProgressHUD popActivity];
+            self.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
+            [self.mainView enableControlButtonsForCall:YES];
+            [self.mainView connectCallHolder:self.multipartyCommunicator.isCallEnabled];
+            [self.mainView addPublisherView:self.multipartyCommunicator.publisherView];
             break;
         }
-        case OTSubscriberVideoDisableWarning:{
-            remote.subscribeToVideo = NO;
+        case OTSubscriberCreated: { // one participant is ready to join
+            [SVProgressHUD show];
+        }
+        case OTSubscriberReady: {   // one participant joins
+            [SVProgressHUD popActivity];
+            if (![self.subscribers containsObject:remote]) {
+                [self.subscribers addObject:remote];
+                [self.mainView updateSubscriberViews:self.subscribers
+                                       publisherView:self.multipartyCommunicator.publisherView];
+            }
             break;
         }
-        case OTSubscriberVideoDisableWarningLifted:{
-            remote.subscribeToVideo = YES;
+        case OTSubscriberDestroyed:{    // one participant leaves
+            if ([self.subscribers containsObject:remote]) {
+                [self.subscribers removeObject:remote];
+                [self.mainView updateSubscriberViews:self.subscribers
+                                       publisherView:self.multipartyCommunicator.publisherView];
+            }
             break;
         }
-        default: break;
+        ...
     }
 }
-   ``` 
+``` 
+
+```swift
+fileprivate func handleCommunicationSignal(_ signal: OTCommunicationSignal, remote: OTMultiPartyRemote?) {
+    switch signal {
+    case .publisherCreated: // join a call
+        
+        guard let multipartyCommunicator = multipartyCommunicator else {break}
+        SVProgressHUD.popActivity()
+        multipartyCommunicator.publisherView.showAudioVideoControl = false
+        mainView.enableControlButtonsForCall(enabled: true)
+        mainView.connectCallHolder(connected: multipartyCommunicator.isCallEnabled)
+        mainView.addPublisherView(multipartyCommunicator.publisherView)
+        
+    case .subscriberReady:  // one participant joins
+        SVProgressHUD.popActivity()
+        if let remote = remote, subscribers.index(of: remote) == nil {
+            subscribers.append(remote)
+            mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
+        }
+        
+    case .subscriberDestroyed:  // one participant leaves
+        if let remote = remote, let index = subscribers.index(of: remote) {
+            subscribers.remove(at: index)
+            mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
+        }
+        ...
+    }
+}
+```
    
 ### TextChat
 
 The **TextCHat** feature is built using [accelerator-textchat-ios](https://github.com/opentok/accelerator-textchat-ios). When the text message button is pressed the view changes to present the chat UI:
 
-   ```objc
+```objc
 - (IBAction)textMessageButtonPressed:(id)sender {
     [self presentViewController:[[TextChatTableViewController alloc] init] animated:YES completion:nil]; //When the text message button is pressed the view changes to present the chat UI
 }
-   ```
-The textchat implementation is pre-configured with values, you can change the default values like `maximumTextMessageLength` and `alias` in `TextChatTableViewController`:
+```
 
-   ```objc
+The textchat logic and UI is pre-configured, you can also change properties like `textChatNavigationBar.topItem.title` and `alias` in `TextChatTableViewController`:
+
+```objc
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    maximumTextMessageLength = 120;
     
     self.textChat = [[OTTextChat alloc] init];
     self.textChat.dataSource = self;
@@ -143,19 +197,65 @@ The textchat implementation is pre-configured with values, you can change the de
     }];
     
     [self.textChatInputView.sendButton addTarget:self action:@selector(sendTextMessage) forControlEvents:UIControlEventTouchUpInside];
-    [self configureCountLabel];
 }
-   ``` 
+``` 
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    textChat = OTTextChat()
+    textChat?.dataSource = self
+    textChat?.alias = "Toxboxer"
+    
+    textChatNavigationBar.topItem?.title = textChat?.alias
+    tableView.textChatTableViewDelegate = self
+    tableView.separatorStyle = .none
+    textChatInputView.textField.delegate = self
+    
+    textChat?.connect(handler: { (signal, connection, error) in
+        
+        guard error == nil else {
+            SVProgressHUD.showError(withStatus: error!.localizedDescription)
+            return
+        }
+        
+        if signal == .didConnect {
+            print("Text Chat starts")
+        }
+        else if signal == .didDisconnect {
+            print("Text Chat stops")
+        }
+        
+    }) { [unowned self](signal, message, error) in
+        
+        guard error == nil, let message = message else {
+            SVProgressHUD.showError(withStatus: error!.localizedDescription)
+            return
+        }
+        
+        self.textMessages.append(message)
+        self.tableView.reloadData()
+        self.textChatInputView.textField.text = nil
+        self.scrollTextChatTableViewToBottom()
+    }
+    
+    textChatInputView.sendButton.addTarget(self, action: #selector(TextChatTableViewController.sendTextMessage), for: .touchUpInside)
+}
+```
 
 ###ScreenShare
 
 The **screen share** features shares images from your camera roll using the `ScreenShareViewController` class which publishes the content.
 
-   ```objc
+```objc
 - (void)startScreenSharing {
     self.multipartyScreenSharer = [[OTMultiPartyCommunicator alloc] initWithView:self.annotationView];
-    self.multipartyScreenSharer.publishOnly = YES;
     self.multipartyScreenSharer.dataSource = self;
+    
+    // publishOnly here is to avoid subscripting to those who already subscribed
+    self.multipartyScreenSharer.publishOnly = YES;
+    
     __weak ScreenShareViewController *weakSelf = self;
     [self.multipartyScreenSharer connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
         
@@ -173,13 +273,39 @@ The **screen share** features shares images from your camera roll using the `Scr
         }
     }];
 }
-   ```
+```
+
+```swift
+fileprivate func startScreenSharing() {
+    multipartyScreenSharer = OTMultiPartyCommunicator.init(view: annotationView)
+    multipartyScreenSharer?.dataSource = self
+    
+    // publishOnly here is to avoid subscripting to those who already subscribed
+    multipartyScreenSharer?.isPublishOnly = true
+    
+    multipartyScreenSharer?.connect {
+        [unowned self](signal, remote, error) in
+        
+        guard error == nil else {
+            self.dismiss(animated: true) {
+                SVProgressHUD.showError(withStatus: error!.localizedDescription)
+            }
+            return
+        }
+        
+        if signal == .publisherCreated {
+            self.multipartyScreenSharer?.isPublishAudio = false
+            self.startAnnotation()
+        }
+    }
+}
+```
    
 ###Annotation
 
-The `ScreenShareViewController` class also handles annotation:
+The `ScreenShareViewController` class also handles local annotation, the beta version is unstable when it comes to work with cross-platform:
 
-   ```objc
+```objc
 - (void)startAnnotation {
     self.annotator = [[OTAnnotator alloc] init];
     self.annotator.dataSource = self;
@@ -208,13 +334,42 @@ The `ScreenShareViewController` class also handles annotation:
         }
     }];
 }
-   ```
-   
-It also provides a method to get the session of the annotator:
+```
 
-   ```objc
-- (OTAcceleratorSession *)sessionOfOTAnnotator:(OTAnnotator *)annotator {
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    return appDelegate.acceleratorSession;
-}   
-   ```    
+```swift
+fileprivate func startAnnotation() {
+    annotator = OTAnnotator()
+    annotator?.dataSource = self
+    annotator?.connect {
+        [unowned self] (signal, error) in
+        
+        guard error == nil else {
+            self.dismiss(animated: true) {
+                SVProgressHUD.showError(withStatus: error!.localizedDescription)
+            }
+            return
+        }
+        
+        if signal == .sessionDidConnect {
+            
+            guard let annotator = self.annotator,
+                    let toolbarView = annotator.annotationScrollView.toolbarView else {
+                print("Error on launching annotation")
+                return
+            }
+            
+            // using frame and self.view to contain toolbarView is for having more space to interact with color picker
+            self.annotator?.annotationScrollView.initializeToolbarView()
+            toolbarView.toolbarViewDataSource = self
+            toolbarView.frame = self.annotationToolbarView.frame
+            self.view.addSubview(toolbarView)
+
+            annotator.annotationScrollView.frame = self.annotationView.bounds;
+            annotator.annotationScrollView.scrollView.contentSize = CGSize(width: CGFloat(annotator.annotationScrollView.bounds.width), height: CGFloat(annotator.annotationScrollView.bounds.height))
+            self.annotationView.addSubview(annotator.annotationScrollView)
+            
+            annotator.annotationScrollView.isAnnotatable = false
+        }
+    }
+}
+```
