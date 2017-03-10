@@ -58,7 +58,7 @@ class TextChatTableViewController: OTTextChatViewController {
     }
 }
 
-extension OTTextChatViewController: OTTextChatDataSource {
+extension TextChatTableViewController: OTTextChatDataSource {
     public func session(of textChat: OTTextChat!) -> OTAcceleratorSession! {
         return (UIApplication.shared.delegate as? AppDelegate)?.session
     }
@@ -83,6 +83,9 @@ extension TextChatTableViewController: OTTextChatTableViewDataSource {
     }
 }
 
-extension OTTextChatViewController: UITextFieldDelegate {
-    
+extension TextChatTableViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        sendTextMessage()
+        return true
+    }
 }
