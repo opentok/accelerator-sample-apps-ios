@@ -159,7 +159,7 @@ The **TextCHat** feature is built using [accelerator-textchat-ios](https://githu
 }
 ```
 
-The textchat logic and UI is pre-configured, you can also change like `textChatNavigationBar.topItem.title` and `alias` in `TextChatTableViewController`:
+The textchat logic and UI is pre-configured, you can also change properties like `textChatNavigationBar.topItem.title` and `alias` in `TextChatTableViewController`:
 
 ```objc
 - (void)viewDidLoad {
