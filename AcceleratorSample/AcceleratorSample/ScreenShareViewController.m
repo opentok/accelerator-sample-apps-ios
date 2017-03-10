@@ -68,8 +68,11 @@
 
 - (void)startScreenSharing {
     self.multipartyScreenSharer = [[OTMultiPartyCommunicator alloc] initWithView:self.annotationView];
-    self.multipartyScreenSharer.publishOnly = YES;
     self.multipartyScreenSharer.dataSource = self;
+    
+    // publishOnly here is to avoid subscripting to those who already subscribed
+    self.multipartyScreenSharer.publishOnly = YES;
+    
     __weak ScreenShareViewController *weakSelf = self;
     [self.multipartyScreenSharer connectWithHandler:^(OTCommunicationSignal signal, OTMultiPartyRemote *subscriber, NSError *error) {
         
