@@ -4,7 +4,19 @@
 
 ## Quick start
 
-This section shows you how to prepare, build, and run the sample application. This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios).
+This section shows you how to prepare, build, and run the sample application. With the sample application you can:
+
+- [Start a Audio/Video Call](#call)
+- [Send text messages](#textchat)
+- [Share your screen](#screenshare)
+- [Annotate on the screen](#annotation)
+
+###Resources
+
+This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
+
+ - [TextChat](https://github.com/opentok/accelerator-textchat-ios).
+ - [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta3).
 
 ### Install the project files
 
