@@ -25,9 +25,16 @@ Configure the sample app code. Then, build and run the app.
     ```objc
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         self.acceleratorSession = [[OTAcceleratorSession alloc] initWithOpenTokApiKey:<#apikey#>
-                                                                        sessionId:<#sessionid#>
-                                                                            token:<#token#>];
+                                                                            sessionId:<#sessionid#>
+                                                                                token:<#token#>];
         return YES;
+    }
+    ```
+    ```swift
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        session = OTAcceleratorSession.init(openTokApiKey: <#apikey#>, sessionId: <#sessionid#>, token: <#token#>)
+        return true
     }
     ```
 
