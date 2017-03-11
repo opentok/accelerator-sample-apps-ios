@@ -4,6 +4,11 @@
 
 ## Quick start
 
+This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
+
+- [TextChat](https://github.com/opentok/accelerator-textchat-ios).
+- [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta4).
+
 ### Install the project files
 
 Use CocoaPods to install the project files and dependencies.
@@ -308,7 +313,9 @@ fileprivate func startScreenSharing() {
    
 ###Annotation
 
-The `ScreenShareViewController` class also handles local annotation, the beta version is unstable when it comes to work with cross-platform:
+The `ScreenShareViewController` class also handles local annotation:
+
+The beta version is unstable when it comes to work with cross-platform, it's much stable if two canvas has same aspect ratio. For more information, please contact us.
 
 ```objc
 - (void)startAnnotation {
@@ -378,10 +385,3 @@ fileprivate func startAnnotation() {
     }
 }
 ```
-
-###Resources
-
-This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
-
- - [TextChat](https://github.com/opentok/accelerator-textchat-ios).
- - [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta4).
