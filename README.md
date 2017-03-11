@@ -14,7 +14,7 @@ This app is built using [accelerator-core-ios](https://github.com/opentok/accele
 Use CocoaPods to install the project files and dependencies.
 
 1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
-1. In Terminal, `cd` to your project directory and type `pod install`.
+1. In Terminal, `cd` to your project directory and type `pod install`. (Sometimes, `pod update` is magical)
 1. Reopen your project in Xcode using the new `*.xcworkspace` file.
 
 ### Configure and build the app
