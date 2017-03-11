@@ -45,7 +45,7 @@ Configure the sample app code. Then, build and run the app.
 
 ## Exploring the code
 
-This section shows you how to prepare, build, and run the sample application. Example code is added in `Objective-C` and `Swift`. With the sample application you can:
+This section shows you how to prepare, build, and run the sample application. Example code is added in [Objective-C](https://github.com/opentok/accelerator-sample-apps-ios/tree/master/AcceleratorSample) and [Swift](https://github.com/opentok/accelerator-sample-apps-ios/tree/master/AcceleratorSampleApp-Swift). With the sample application you can:
 
 - [Start a Audio/Video Call](#call)
 - [Send text messages](#textchat)
