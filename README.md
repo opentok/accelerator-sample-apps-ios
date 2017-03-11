@@ -4,12 +4,17 @@
 
 ## Quick start
 
+This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
+
+- [TextChat](https://github.com/opentok/accelerator-textchat-ios).
+- [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta4).
+
 ### Install the project files
 
 Use CocoaPods to install the project files and dependencies.
 
 1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
-1. In Terminal, `cd` to your project directory and type `pod install`.
+1. In Terminal, `cd` to your project directory and type `pod install`. (Sometimes, `pod update` is magical)
 1. Reopen your project in Xcode using the new `*.xcworkspace` file.
 
 ### Configure and build the app
@@ -40,7 +45,7 @@ Configure the sample app code. Then, build and run the app.
 
 ## Exploring the code
 
-This section shows you how to prepare, build, and run the sample application. With the sample application you can:
+This section shows you how to prepare, build, and run the sample application. Example code is added in [Objective-C](https://github.com/opentok/accelerator-sample-apps-ios/tree/master/AcceleratorSample) and [Swift](https://github.com/opentok/accelerator-sample-apps-ios/tree/master/AcceleratorSampleApp-Swift). With the sample application you can:
 
 - [Start a Audio/Video Call](#call)
 - [Send text messages](#textchat)
@@ -308,7 +313,9 @@ fileprivate func startScreenSharing() {
    
 ###Annotation
 
-The `ScreenShareViewController` class also handles local annotation, the beta version is unstable when it comes to work with cross-platform:
+The `ScreenShareViewController` class also handles local annotation:
+
+The beta version is unstable when it comes to work with cross-platform, it's much stable if two canvas has same aspect ratio. For more information, please contact us.
 
 ```objc
 - (void)startAnnotation {
@@ -378,10 +385,3 @@ fileprivate func startAnnotation() {
     }
 }
 ```
-
-###Resources
-
-This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
-
- - [TextChat](https://github.com/opentok/accelerator-textchat-ios).
- - [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta4).
