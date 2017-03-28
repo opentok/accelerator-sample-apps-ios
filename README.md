@@ -57,7 +57,7 @@ For details about developing with the SDK and the APIs this sample uses, see the
 _**NOTE:** This sample app collects anonymous usage data for internal TokBox purposes only. Please do not modify or remove any logging code from this sample application._
 
 
-###Call
+### Call
 
 When the call button is pressed `OTMultiPartyCommunicator` initiates the connection to the OpenTok session and sets up the listeners for the publisher and subscriber streams:
 
@@ -254,7 +254,7 @@ override func viewDidLoad() {
 }
 ```
 
-###ScreenShare
+### ScreenShare
 
 The **screen share** features shares images from your camera roll using the `ScreenShareViewController` class which publishes the content.
 
@@ -311,7 +311,7 @@ fileprivate func startScreenSharing() {
 }
 ```
    
-###Annotation
+### Annotation
 
 The `ScreenShareViewController` class also handles local annotation:
 
