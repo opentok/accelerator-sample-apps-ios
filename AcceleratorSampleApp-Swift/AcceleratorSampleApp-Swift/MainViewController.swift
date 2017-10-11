@@ -110,14 +110,14 @@ class MainViewController: UIViewController {
         case .publisherCreated: // join a call
             
             guard let multipartyCommunicator = multipartyCommunicator else {break}
-            SVProgressHUD.popActivity()
+            SVProgressHUD.dismiss()
             multipartyCommunicator.publisherView.showAudioVideoControl = false
             mainView.enableControlButtonsForCall(enabled: true)
             mainView.connectCallHolder(connected: multipartyCommunicator.isCallEnabled)
             mainView.addPublisherView(multipartyCommunicator.publisherView)
             
         case .subscriberReady:  // one participant joins
-            SVProgressHUD.popActivity()
+            SVProgressHUD.dismiss()
             if let remote = remote, subscribers.index(of: remote) == nil {
                 subscribers.append(remote)
                 mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
@@ -133,7 +133,7 @@ class MainViewController: UIViewController {
             SVProgressHUD.show()
             
         case .sessionDidReconnect:
-            SVProgressHUD.popActivity()
+            SVProgressHUD.dismiss()
             
         case .subscriberVideoDisableWarningLifted:
             remote?.isSubscribeToVideo = true
