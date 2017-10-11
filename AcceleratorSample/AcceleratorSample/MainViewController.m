@@ -64,7 +64,7 @@
     else {
         
         // end call
-        [SVProgressHUD popActivity];
+        [SVProgressHUD dismiss];
         [self.multipartyCommunicator disconnect];
         [self.mainView resetAllControl];
         [self.subscribers removeAllObjects];
@@ -76,7 +76,7 @@
     
     switch (signal) {
         case OTPublisherCreated: {  // join a call
-            [SVProgressHUD popActivity];
+            [SVProgressHUD dismiss];
             self.multipartyCommunicator.publisherView.showAudioVideoControl = NO;
             [self.mainView enableControlButtonsForCall:YES];
             [self.mainView connectCallHolder:self.multipartyCommunicator.isCallEnabled];
@@ -87,7 +87,7 @@
             [SVProgressHUD show];
         }
         case OTSubscriberReady: {   // one participant joins
-            [SVProgressHUD popActivity];
+            [SVProgressHUD dismiss];
             if (![self.subscribers containsObject:remote]) {
                 [self.subscribers addObject:remote];
                 [self.mainView updateSubscriberViews:self.subscribers
@@ -108,7 +108,7 @@
             break;
         }
         case OTSessionDidReconnect: {
-            [SVProgressHUD popActivity];
+            [SVProgressHUD dismiss];
             break;
         }
         case OTSubscriberVideoDisableWarning:{
