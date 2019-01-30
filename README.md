@@ -7,7 +7,7 @@
 This app is built using [accelerator-core-ios](https://github.com/opentok/accelerator-core-ios) and the following accelerator packs:
 
 - [TextChat](https://github.com/opentok/accelerator-textchat-ios).
-- [Annotation](https://github.com/opentok/annotation-acc-pack/tree/2.0.0-beta4).
+- [Annotation](https://github.com/opentok/accelerator-annotation-ios).
 
 ### Install the project files
 
