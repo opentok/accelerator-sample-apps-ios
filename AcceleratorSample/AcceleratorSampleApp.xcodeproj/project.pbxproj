@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		703F75E75456409DFEC697D7 /* libPods-AcceleratorSampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C67195F1958EC21311272EFA /* libPods-AcceleratorSampleApp.a */; };
 		A017C82A1E70F2DE00B36BAA /* ScreenShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A017C8291E70F2DE00B36BAA /* ScreenShareViewController.m */; };
 		A05C38741E6A4B2D009B9345 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A05C38731E6A4B2D009B9345 /* main.m */; };
 		A05C38771E6A4B2D009B9345 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A05C38761E6A4B2D009B9345 /* AppDelegate.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15C9B2040F17550CD00EA248 /* Pods-AcceleratorSampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcceleratorSampleApp.debug.xcconfig"; path = "Target Support Files/Pods-AcceleratorSampleApp/Pods-AcceleratorSampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		338DCF9ED276606E99DCE09C /* Pods-AcceleratorSampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcceleratorSampleApp.release.xcconfig"; path = "Target Support Files/Pods-AcceleratorSampleApp/Pods-AcceleratorSampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		A017C8281E70F2DE00B36BAA /* ScreenShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenShareViewController.h; sourceTree = "<group>"; };
 		A017C8291E70F2DE00B36BAA /* ScreenShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenShareViewController.m; sourceTree = "<group>"; };
 		A05C386F1E6A4B2D009B9345 /* AcceleratorSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcceleratorSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +65,7 @@
 		A0D5D8F31E6A51AD0046D581 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		A0D5D8F91E6A53DF0046D581 /* TextChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextChatTableViewController.h; sourceTree = "<group>"; };
 		A0D5D8FA1E6A53DF0046D581 /* TextChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextChatTableViewController.m; sourceTree = "<group>"; };
+		C67195F1958EC21311272EFA /* libPods-AcceleratorSampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AcceleratorSampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				703F75E75456409DFEC697D7 /* libPods-AcceleratorSampleApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0C2958B940318FF67DEE3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C67195F1958EC21311272EFA /* libPods-AcceleratorSampleApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A05C38661E6A4B2D009B9345 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +110,8 @@
 				A05C388B1E6A4B2D009B9345 /* AcceleratorSampleTests */,
 				A05C38961E6A4B2D009B9345 /* AcceleratorSampleUITests */,
 				A05C38701E6A4B2D009B9345 /* Products */,
+				F13A88098E5B8DB566AC5626 /* Pods */,
+				1A0C2958B940318FF67DEE3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +173,16 @@
 			path = AcceleratorSampleUITests;
 			sourceTree = "<group>";
 		};
+		F13A88098E5B8DB566AC5626 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15C9B2040F17550CD00EA248 /* Pods-AcceleratorSampleApp.debug.xcconfig */,
+				338DCF9ED276606E99DCE09C /* Pods-AcceleratorSampleApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,9 +190,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A05C389C1E6A4B2D009B9345 /* Build configuration list for PBXNativeTarget "AcceleratorSampleApp" */;
 			buildPhases = (
+				1FB164FFBBA60AC6519B2162 /* [CP] Check Pods Manifest.lock */,
 				A05C386B1E6A4B2D009B9345 /* Sources */,
 				A05C386C1E6A4B2D009B9345 /* Frameworks */,
 				A05C386D1E6A4B2D009B9345 /* Resources */,
+				6EC400138D2B09E4403A4DDB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,6 +316,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1FB164FFBBA60AC6519B2162 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AcceleratorSampleApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EC400138D2B09E4403A4DDB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AcceleratorSampleApp/Pods-AcceleratorSampleApp-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTAcceleratorCore/OTAcceleratorCoreBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTAnnotationAccelerator/OTAnnotationAcceleratorBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTTextChatAccelerator/OTTextChatAcceleratorBundle.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTAcceleratorCoreBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTAnnotationAcceleratorBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTTextChatAcceleratorBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AcceleratorSampleApp/Pods-AcceleratorSampleApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A05C386B1E6A4B2D009B9345 /* Sources */ = {
@@ -447,6 +523,7 @@
 		};
 		A05C389D1E6A4B2D009B9345 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15C9B2040F17550CD00EA248 /* Pods-AcceleratorSampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MGD69Q275W;
@@ -460,6 +537,7 @@
 		};
 		A05C389E1E6A4B2D009B9345 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 338DCF9ED276606E99DCE09C /* Pods-AcceleratorSampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MGD69Q275W;

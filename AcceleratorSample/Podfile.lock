@@ -1,30 +1,24 @@
 PODS:
-  - LHToolbar (1.3.0-beta)
-  - OpenTok (2.16.1)
-  - OTAcceleratorCore (1.1.9):
-    - OpenTok (= 2.16.1)
-    - OTKAnalytics (= 2.1.0)
-    - SVProgressHUD (= 2.2.1)
-  - OTAnnotationAccelerator (1.0.0-beta3):
-    - LHToolbar (= 1.3.0-beta)
-    - OTAcceleratorCore
-  - OTKAnalytics (2.1.0)
-  - OTTextChatAccelerator (1.0.4):
-    - OTAcceleratorCore
-    - OTTextChatAccelerator/Core (= 1.0.4)
-  - OTTextChatAccelerator/Core (1.0.4):
-    - OTAcceleratorCore
-  - SVProgressHUD (2.2.1)
+  - OpenTok (2.18.0)
+  - OTAcceleratorCore (2.0.1):
+    - OpenTok (= 2.18.0)
+    - OTKAnalytics (= 2.1.2)
+    - SVProgressHUD (= 2.2.5)
+  - OTAnnotationAccelerator (1.0.0-beta4):
+    - OTAcceleratorCore (= 2.0.1)
+  - OTKAnalytics (2.1.2)
+  - OTTextChatAccelerator (2.0.1):
+    - OTAcceleratorCore (~> 2.0.1)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - OTAcceleratorCore (= 1.1.9)
-  - OTAnnotationAccelerator (= 1.0.0-beta3)
-  - OTTextChatAccelerator (= 1.0.4)
-  - SVProgressHUD (= 2.2.1)
+  - OTAcceleratorCore (~> 2.0.1)
+  - OTAnnotationAccelerator (~> 1.0.0-beta4)
+  - OTTextChatAccelerator (~> 2.0.1)
+  - SVProgressHUD (~> 2.2.5)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - LHToolbar
+  trunk:
     - OpenTok
     - OTAcceleratorCore
     - OTAnnotationAccelerator
@@ -33,14 +27,13 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  LHToolbar: 130834d93d2ec2b145d4e1012e3e9fa1d7c57e59
-  OpenTok: 556374577b66cbf791190c84612346c8f3997c9e
-  OTAcceleratorCore: 8b95e0181957c1a12b8efaacca9bf5a784d867c4
-  OTAnnotationAccelerator: 22ec6d035c00288d322b67c98d3463d127858a8c
-  OTKAnalytics: d959cb9037564ce382cf79f1e43d0bf03a9dcd60
-  OTTextChatAccelerator: 13bd2b2c4b07110033a72d05dfe1fe8c0e1873e8
-  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  OpenTok: bf4c81ff741e7976542c61b8f317882f8076eede
+  OTAcceleratorCore: 345f45ef7ee118d532d1173ec2c2ee2be7ba68e9
+  OTAnnotationAccelerator: c54016ef370e8b0270a16c8d3044909e7b432707
+  OTKAnalytics: 2de2f8971b5af7f313882ada0b1eae25104296f4
+  OTTextChatAccelerator: 51e615465877ad6d79fa0b076ce0e6fd8598a9a4
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: e2dac3434e3f6acc601c928c685dde2f77af1214
+PODFILE CHECKSUM: af4d69fe1b6093808682179c42d82b8d6fffc15e
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.10.0.rc.1
