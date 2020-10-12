@@ -118,13 +118,13 @@ class MainViewController: UIViewController {
             
         case .subscriberReady:  // one participant joins
             SVProgressHUD.dismiss()
-            if let remote = remote, subscribers.index(of: remote) == nil {
+            if let remote = remote, subscribers.firstIndex(of: remote) == nil {
                 subscribers.append(remote)
                 mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
             }
             
         case .subscriberDestroyed:  // one participant leaves
-            if let remote = remote, let index = subscribers.index(of: remote) {
+            if let remote = remote, let index = subscribers.firstIndex(of: remote) {
                 subscribers.remove(at: index)
                 mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
             }
@@ -162,8 +162,8 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
         screenSharingVC.sharingImage = selectedImage
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {return}
         selectedImage = image
         picker.dismiss(animated: true) {
             [unowned self] in

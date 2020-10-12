@@ -94,7 +94,6 @@
 				D558ED78F4A960A8F1A40C3B /* Pods-AcceleratorSampleApp-Swift.debug.xcconfig */,
 				A6318F8EB602B84AE686DFE4 /* Pods-AcceleratorSampleApp-Swift.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -234,7 +233,7 @@
 				TargetAttributes = {
 					A008E78A1E721A0D00CFF213 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = MGD69Q275W;
+						DevelopmentTeam = 7F2B5ZSP8Q;
 						ProvisioningStyle = Automatic;
 					};
 					A008E79E1E721A0D00CFF213 = {
@@ -256,6 +255,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -510,14 +510,14 @@
 			baseConfigurationReference = D558ED78F4A960A8F1A40C3B /* Pods-AcceleratorSampleApp-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MGD69Q275W;
+				DEVELOPMENT_TEAM = 7F2B5ZSP8Q;
 				INFOPLIST_FILE = "AcceleratorSampleApp-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.AcceleratorSampleApp-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AcceleratorSampleApp-Swift/AcceleratorSampleApp-Swift-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -526,14 +526,14 @@
 			baseConfigurationReference = A6318F8EB602B84AE686DFE4 /* Pods-AcceleratorSampleApp-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MGD69Q275W;
+				DEVELOPMENT_TEAM = 7F2B5ZSP8Q;
 				INFOPLIST_FILE = "AcceleratorSampleApp-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.AcceleratorSampleApp-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AcceleratorSampleApp-Swift/AcceleratorSampleApp-Swift-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
