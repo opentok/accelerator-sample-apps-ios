@@ -14,7 +14,7 @@ PODS:
 DEPENDENCIES:
   - OTAcceleratorCore (~> 2.0.1)
   - OTAnnotationAccelerator (~> 1.0.0-beta4)
-  - OTTextChatAccelerator (from `https://github.com/opentok/accelerator-textchat-ios.git`)
+  - OTTextChatAccelerator (~> 2.0.1)
   - SVProgressHUD (~> 2.2.5)
 
 SPEC REPOS:
@@ -23,16 +23,8 @@ SPEC REPOS:
     - OTAcceleratorCore
     - OTAnnotationAccelerator
     - OTKAnalytics
+    - OTTextChatAccelerator
     - SVProgressHUD
-
-EXTERNAL SOURCES:
-  OTTextChatAccelerator:
-    :git: https://github.com/opentok/accelerator-textchat-ios.git
-
-CHECKOUT OPTIONS:
-  OTTextChatAccelerator:
-    :commit: f36fffad659c4521d1a6f79c2176f86b558ec4b8
-    :git: https://github.com/opentok/accelerator-textchat-ios.git
 
 SPEC CHECKSUMS:
   OpenTok: bf4c81ff741e7976542c61b8f317882f8076eede
@@ -42,6 +34,6 @@ SPEC CHECKSUMS:
   OTTextChatAccelerator: 51e615465877ad6d79fa0b076ce0e6fd8598a9a4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: aca75e956ef50841bb47d50ca82a55f61105a20b
+PODFILE CHECKSUM: f669f6bb67828e7b34bb7d2df9d33bc0fc41263e
 
 COCOAPODS: 1.10.0.rc.1
