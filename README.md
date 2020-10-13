@@ -34,7 +34,7 @@ Configure the sample app code. Then, build and run the app.
     }
     ```
     ```swift
-     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
         
         session = OTAcceleratorSession.init(openTokApiKey: <#apikey#>, sessionId: <#sessionid#>, token: <#token#>)
         return true
@@ -144,13 +144,13 @@ fileprivate func handleCommunicationSignal(_ signal: OTCommunicationSignal, remo
         
     case .subscriberReady:  // one participant joins
         SVProgressHUD.popActivity()
-        if let remote = remote, subscribers.index(of: remote) == nil {
+        if let remote = remote, subscribers.firstIndex(of: remote) == nil {
             subscribers.append(remote)
             mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
         }
         
     case .subscriberDestroyed:  // one participant leaves
-        if let remote = remote, let index = subscribers.index(of: remote) {
+        if let remote = remote, let index = subscribers.firstIndex(of: remote) {
             subscribers.remove(at: index)
             mainView.updateSubscriberViews(subscribers, publisherView: multipartyCommunicator?.publisherView)
         }
@@ -250,7 +250,7 @@ override func viewDidLoad() {
         self.scrollTextChatTableViewToBottom()
     }
     
-    textChatInputView.sendButton.addTarget(self, action: #selector(TextChatTableViewController.sendTextMessage), for: .touchUpInside)
+    textChatInputView.sendButton.addTarget(self, action: #selector(sendTextMessage), for: .touchUpInside)
 }
 ```
 
