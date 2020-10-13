@@ -12,9 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private(set) var session: OTAcceleratorSession?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        session = OTAcceleratorSession.init(openTokApiKey: <#apikey#>, sessionId: <#sessionid#>, token: <#token#>)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        session = OTAcceleratorSession(openTokApiKey: <#T##String!#>, sessionId: <#T##String!#>, token: <#T##String!#>)
         return true
     }
 }

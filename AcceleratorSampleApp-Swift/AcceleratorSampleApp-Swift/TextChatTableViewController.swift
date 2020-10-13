@@ -50,10 +50,10 @@ class TextChatTableViewController: OTTextChatViewController {
             self.scrollTextChatTableViewToBottom()
         }
         
-        textChatInputView.sendButton.addTarget(self, action: #selector(TextChatTableViewController.sendTextMessage), for: .touchUpInside)
+        textChatInputView.sendButton.addTarget(self, action: #selector(sendTextMessage), for: .touchUpInside)
     }
     
-    func sendTextMessage() {
+    @objc func sendTextMessage() {
         textChat?.sendMessage(textChatInputView.textField.text)
     }
 }
