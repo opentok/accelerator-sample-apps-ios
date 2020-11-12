@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sfx-Dl-8Us">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sfx-Dl-8Us">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -131,7 +129,7 @@
                         </connections>
                     </view>
                     <connections>
-                        <segue destination="fNv-d8-po2" kind="presentation" identifier="ScreenSharing" id="iv4-Gj-Bfa"/>
+                        <segue destination="fNv-d8-po2" kind="presentation" identifier="ScreenSharing" modalPresentationStyle="fullScreen" id="iv4-Gj-Bfa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jxu-Tp-kgt" sceneMemberID="firstResponder"/>
@@ -212,11 +210,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="closeXWhite" width="13" height="13"/>
-        <image name="message" width="24" height="20"/>
+        <image name="closeXWhite" width="13.5" height="13.5"/>
+        <image name="message" width="24.5" height="20.5"/>
         <image name="mic" width="21" height="26"/>
-        <image name="screenshare" width="26" height="20"/>
-        <image name="startCall" width="15" height="30"/>
+        <image name="screenshare" width="29" height="20.5"/>
+        <image name="startCall" width="15.5" height="30"/>
         <image name="video" width="24" height="14"/>
     </resources>
 </document>

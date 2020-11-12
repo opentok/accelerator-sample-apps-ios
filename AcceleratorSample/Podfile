@@ -1,8 +1,6 @@
 platform :ios, '11.0'
 
 target 'AcceleratorSampleApp' do
-pod 'OTTextChatAccelerator', '~> 2.0.1'
-pod 'OTAnnotationAccelerator', '~> 1.0.0-beta4'
 pod 'SVProgressHUD', '~> 2.2.5'
-pod 'OTAcceleratorCore', '~> 2.0.1'
+pod 'OTAcceleratorCore', '~> 3.0.0'
 end
