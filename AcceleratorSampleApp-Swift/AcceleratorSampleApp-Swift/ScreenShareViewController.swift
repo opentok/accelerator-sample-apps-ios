@@ -82,6 +82,7 @@ class ScreenShareViewController: UIViewController {
             }
             
             if signal == .sessionDidConnect {
+                self.annotator?.annotationScrollView.initializeToolbarView()
                 
                 guard let annotator = self.annotator,
                         let toolbarView = annotator.annotationScrollView.toolbarView else {
@@ -90,7 +91,7 @@ class ScreenShareViewController: UIViewController {
                 }
                 
                 // using frame and self.view to contain toolbarView is for having more space to interact with color picker
-                self.annotator?.annotationScrollView.initializeToolbarView()
+                
                 toolbarView.toolbarViewDataSource = self
                 toolbarView.frame = self.annotationToolbarView.frame
                 self.view.addSubview(toolbarView)
