@@ -212,7 +212,7 @@
         <image name="closeXWhite" width="13.5" height="13.5"/>
         <image name="message" width="24.5" height="20.5"/>
         <image name="mic" width="21" height="26"/>
-        <image name="screenshare" width="29" height="20.5"/>
+        <image name="screenshare" width="26.5" height="20.5"/>
         <image name="startCall" width="15.5" height="30"/>
         <image name="video" width="24" height="14"/>
     </resources>
