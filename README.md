@@ -254,7 +254,7 @@ override func viewDidLoad() {
 }
 ```
 
-###ScreenShare
+### ScreenShare
 
 The **screen share** features shares images from your camera roll using the `ScreenShareViewController` class which publishes the content.
 
@@ -311,7 +311,7 @@ fileprivate func startScreenSharing() {
 }
 ```
    
-###Annotation
+### Annotation
 
 The `ScreenShareViewController` class also handles local annotation:
 
