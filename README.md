@@ -315,8 +315,7 @@ fileprivate func startScreenSharing() {
 
 The `ScreenShareViewController` class also handles local annotation:
 
-The beta version is unstable when it comes to work with cross-platform, it's much stable if two canvas has same aspect ratio. For more information, please contact us.
-
+The beta version is unstable when it comes to work with cross-platform, it's much stable if two canvas has same aspect ratio.
 ```objc
 - (void)startAnnotation {
     self.annotator = [[OTAnnotator alloc] init];
