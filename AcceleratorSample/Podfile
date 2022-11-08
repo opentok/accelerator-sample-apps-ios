@@ -1,6 +1,5 @@
-platform :ios, '11.0'
+platform :ios, '12.0'
 
 target 'AcceleratorSampleApp' do
-pod 'SVProgressHUD', '~> 2.2.5'
-pod 'OTAcceleratorCore', '~> 3.0.0'
+pod 'OTAcceleratorCore', '~> 4.0.0'
 end
